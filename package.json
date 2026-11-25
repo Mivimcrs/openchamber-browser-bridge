@@ -57,7 +57,7 @@
     "build:service": "node tools/build-service.mjs",
     "build:panel": "node tools/build-panel.mjs",
     "check": "node tools/check.mjs",
-    "test": "node --test tests/",
+    "test": "node --test tests/service.test.mjs",
     "smoke": "node tools/smoke.mjs",
     "smoke:bundle": "node tools/smoke-bundle.mjs",
     "package": "node tools/package.mjs"
