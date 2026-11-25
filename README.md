@@ -16,10 +16,37 @@
 
 ## 安装
 
-1. OpenChamber → 设置 → 扩展 → 添加扩展（本仓库根目录，或 Release 里的 zip）。
+### 一键脚本（Windows，推荐）
+
+```powershell
+git clone https://github.com/Mivimcrs/openchamber-browser-bridge.git
+cd openchamber-browser-bridge
+powershell -ExecutionPolicy Bypass -File install\install.ps1
+```
+
+脚本会复制到 OpenChamber 扩展目录、登记路径、把浏览器提供者指向本扩展，然后打印
+后续步骤。装完**完全退出 OpenChamber 再启动**，首次会弹一次权限批准
+（service / opencodePlugin / skills）；加 `-Grant` 可跳过这一步。
+细节见 [`install/README.md`](install/README.md)。
+
+### 没有 git / npm 的机器
+
+下载 Release 里的 `openchamber-browser-bridge-<版本>-setup.zip`，解压后双击
+`install\offline-install.cmd`。它带着扩展包和一键安装脚本，不需要联网构建。
+
+### 在 OpenChamber 里装
+
+1. 设置 → 扩展 → 添加扩展（仓库根目录或 Release 的 zip）。
 2. 批准 `service`、`opencodePlugin`、`skills` 权限。
 3. 设置 → 通用 → OpenChamber 工具 → **浏览器提供者** → 选「OpenChamber-Browser-bridge」。
-4. （可选）打开侧边栏「OpenChamber-Browser-bridge」面板核对浏览器路径。
+
+### 另一台电脑需要什么
+
+| 需要 | 说明 |
+| --- | --- |
+| OpenChamber ≥ 2.7.0 | 扩展引擎版本要求 |
+| 一个 Chromium 内核浏览器 | 默认探测 ungoogled-chromium / Chrome / Edge / Vivaldi；都没有就在面板里填 exe |
+| 不需要浏览器侧扩展 | 本桥自己拉起 Chromium |
 
 ## 使用
 
@@ -68,6 +95,7 @@ Vivaldi）、撤销授权、查看桥状态。
 | `skills/browser-bridge/SKILL.md` | 给 agent 的使用口径 |
 | `tests/` | 协议与 HTTP 单测 |
 | `tools/` | 构建、自检、打包、冒烟测试 |
+| `install/` | Windows 一键安装脚本与说明（随仓库，不随扩展包发布） |
 
 ## 开发
 
@@ -78,7 +106,7 @@ npm run check          # 清单 / 入口 / 语法 / 本机路径泄漏
 npm test               # 单元测试
 npm run smoke          # 起服务，授权门 + 真拉起 Chromium 跑动作
 npm run smoke:bundle   # 用打包后的 bundle.js 再跑一遍
-npm run package        # 出 dist/openchamber-browser-bridge-<version>.zip
+npm run package        # 出扩展包 zip 与 setup 离线包（两个 Release 资产）
 ```
 
 `service/bundle.js` 与 `panel/built.js` 是**提交进仓库的构建产物**：宿主按 URL/zip 安装

@@ -9,8 +9,8 @@ import { ROOT } from './_deps.mjs'
 const deflateRawSync = zlib.deflateRawSync
 const zlibCrc32 = typeof zlib.crc32 === 'function' ? zlib.crc32 : null
 
-const EXCLUDE_DIRS = new Set(['.git', '.github', 'node_modules', 'dist', 'tmp-test-data', '.state', '.openchamber', '本地工具', 'tools', 'tests'])
-const EXCLUDE_FILES = new Set(['.gitignore', 'CHANGELOG.md', '踩坑日志.md'])
+const EXCLUDE_DIRS = new Set(['.git', '.github', 'node_modules', 'dist', 'tmp-test-data', '.state', '.openchamber', '本地工具', 'tools', 'tests', 'install'])
+const EXCLUDE_FILES = new Set(['.gitignore', '.gitattributes', 'CHANGELOG.md', '踩坑日志.md'])
 const EXCLUDE_SUFFIX = ['.zip', '.log']
 
 const crcTable = (() => {

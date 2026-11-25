@@ -39,25 +39,23 @@ jobs:
       - name: 单元测试
         run: npm test
 
-      - name: 打包
+      - name: 打包（扩展包 + setup 离线包）
         run: |
           set -euo pipefail
           npm run package
-          ZIP="$(ls dist/*.zip)"
-          unzip -l "$ZIP" | head -30
+          ls -l dist
           echo "VERSION=$(node -p "require('./package.json').version")" >> "$GITHUB_ENV"
-          echo "ZIP=$ZIP" >> "$GITHUB_ENV"
 
       - uses: actions/upload-artifact@v4
         with:
           name: openchamber-browser-bridge-${{ env.VERSION }}
-          path: ${{ env.ZIP }}
+          path: dist/*.zip
           if-no-files-found: error
 
       - name: 发布 Release（仅 tag 触发）
         if: startsWith(github.ref, 'refs/tags/')
         run: |
-          gh release create "$GITHUB_REF_NAME" "$ZIP" \
+          gh release create "$GITHUB_REF_NAME" dist/*.zip \
             --title "$GITHUB_REF_NAME" \
             --generate-notes
         env:
