@@ -47,11 +47,11 @@ async function walk(dir, rel = '') {
     const relPath = rel ? `${rel}/${entry.name}` : entry.name
     if (EXCLUDE_SUFFIX.some((suffix) => entry.name.endsWith(suffix))) continue
     if (entry.isDirectory()) {
-      if (!INCLUDE_DIRS.has(relPath)) continue
+      // 只在顶层按白名单挑目录，进去之后整棵收
+      if (!rel && !INCLUDE_DIRS.has(entry.name)) continue
       out.push(...await walk(path.join(dir, entry.name), relPath))
       continue
     }
-    // 顶层只收白名单文件；白名单目录里的文件全收
     if (rel) out.push(relPath)
     else if (INCLUDE_FILES.has(relPath)) out.push(relPath)
   }

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.2 — 2026-11-25
+
+- 修复 setup 离线包遗漏 `skills/`：解压安装后 agent 拿不到授权流程与动作口径的 skill。
+- 离线包整棵包含 panel / plugin / service / skills / 文档 与 install 脚本。
+
 ## 0.2.1 — 2026-11-25
 
 - 新增 Windows 一键安装：`install/install.ps1` 复制扩展、登记路径、把浏览器提供者

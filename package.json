@@ -1,6 +1,6 @@
 {
   "name": "openchamber-browser-bridge",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "private": true,
   "type": "module",
   "description": "OpenChamber-Browser-bridge：对话需要浏览器自动化时，经用户授权自动拉起本机 Chromium（CDP + 独立持久 profile），agent 通过 openchamber_web 逐步驱动；缺浏览器时给出安装引导。",
