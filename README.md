@@ -34,12 +34,7 @@ Vivaldi）、撤销授权、查看桥状态。
 
 ## 支持的浏览器
 
-默认按顺序找第一个存在的：
-
-1. `C:\UserProgram\ungoogled-chromium\chrome.exe`
-2. Chrome（Program Files）
-3. Edge（Program Files）
-4. Vivaldi（%LOCALAPPDATA%）
+推荐安装 `https://github.com/ungoogled-software/ungoogled-chromium` 并写入用户环境中使用，和日常浏览器隔离。
 
 找不到时 `browser.open` 会返回安装引导，agent 会转述给用户。面板里可指定任意路径。
 
