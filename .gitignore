@@ -1,0 +1,20 @@
+# 依赖与构建产物
+node_modules/
+dist/
+
+# 运行时状态（授权、设置、浏览器 profile）
+.state/
+
+# 本地测试数据与截图
+tmp-test-data/
+.openchamber/
+*.zip
+*.log
+
+# 仅本机使用的脚本（含本机路径）与工作日志
+本地工具/
+踩坑日志.md
+
+# 系统噪声
+.DS_Store
+Thumbs.db

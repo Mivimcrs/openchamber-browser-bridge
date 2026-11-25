@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenChamber-Browser-bridge</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { margin: 0; padding: 16px; font: 13px/1.6 system-ui, "Segoe UI", sans-serif; }
+  h2 { font-size: 14px; margin: 0 0 12px; }
+  section { margin-bottom: 20px; }
+  .muted { opacity: .65; }
+  .row { display: flex; gap: 8px; align-items: center; margin: 6px 0; flex-wrap: wrap; }
+  input[type=text] { flex: 1; min-width: 200px; padding: 6px 8px; border: 1px solid var(--border, #8884); border-radius: 6px; background: transparent; color: inherit; font: inherit; }
+  button { padding: 6px 14px; border-radius: 6px; border: 1px solid var(--border, #8884); background: transparent; color: inherit; font: inherit; cursor: pointer; }
+  button.primary { background: var(--primary, #3b82f6); border-color: transparent; color: #fff; }
+  .badge { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 12px; }
+  .badge.ok { background: #22c55e22; color: #16a34a; }
+  .badge.bad { background: #ef444422; color: #dc2626; }
+  .badge.idle { background: #8882; }
+  .hint { font-size: 12px; opacity: .75; margin-top: 4px; }
+</style>
+</head>
+<body>
+  <h2>OpenChamber-Browser-bridge</h2>
+
+  <section>
+    <div class="row"><b>浏览器</b> <span id="exe-badge" class="badge idle">检测中</span></div>
+    <div class="row">
+      <input type="text" id="exe-path" placeholder="C:\UserProgram\ungoogled-chromium\chrome.exe">
+      <button class="primary" id="save">保存</button>
+    </div>
+    <div class="hint">本机任意 Chromium 内核浏览器的 exe 路径均可（Edge / Chrome / Vivaldi…）。保存后下次拉起生效。</div>
+  </section>
+
+  <section>
+    <div class="row"><b>持久 profile</b> <span class="muted">独立目录，不碰日常浏览器</span></div>
+    <div class="row"><input type="text" id="profile-dir" placeholder="（默认：服务数据目录/browser-profile）"></div>
+    <div class="hint">登录态跨窗口保留。留空用默认目录。</div>
+  </section>
+
+  <section>
+    <div class="row"><b>授权</b> <span id="auth-badge" class="badge idle">未授权</span></div>
+    <div class="row"><button id="revoke">撤销授权</button></div>
+    <div class="hint">对话里用户同意后由 agent 写入，12 小时内同会话免再问。</div>
+  </section>
+
+  <section>
+    <div class="row"><b>桥状态</b> <span id="run-badge" class="badge idle">未连接</span></div>
+    <div id="pages" class="muted"></div>
+  </section>
+
+<script src="built.js"></script>
+</body>
+</html>

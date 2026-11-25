@@ -1,0 +1,69 @@
+{
+  "name": "openchamber-browser-bridge",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "description": "OpenChamber-Browser-bridge：对话需要浏览器自动化时，经用户授权自动拉起本机 Chromium（CDP + 独立持久 profile），agent 通过 openchamber_web 逐步驱动；缺浏览器时给出安装引导。",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mivimcrs/openchamber-browser-bridge.git"
+  },
+  "openchamber": {
+    "apiVersion": 1,
+    "engines": {
+      "openchamber": ">=2.7.0"
+    },
+    "contributes": {
+      "panel": {
+        "id": "browser-bridge",
+        "name": "OpenChamber-Browser-bridge",
+        "icon": "icon.svg",
+        "entry": "panel/index.html"
+      },
+      "service": {
+        "entry": "service/bundle.js",
+        "runtime": "host",
+        "provides": ["browser"],
+        "keepRunning": true,
+        "permissions": {}
+      },
+      "opencodePlugin": "plugin",
+      "skills": "skills",
+      "tools": [
+        {
+          "match": "browser_bridge_authorize",
+          "name": "浏览器授权",
+          "icon": "icon.svg",
+          "title": "授权本会话使用浏览器"
+        },
+        {
+          "match": "browser_bridge_status",
+          "name": "浏览器桥状态",
+          "icon": "icon.svg",
+          "title": "浏览器桥状态"
+        },
+        {
+          "match": "openchamber_web",
+          "name": "浏览器",
+          "icon": "icon.svg",
+          "title": "{action}"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "build": "node tools/build-service.mjs && node tools/build-panel.mjs",
+    "build:service": "node tools/build-service.mjs",
+    "build:panel": "node tools/build-panel.mjs",
+    "check": "node tools/check.mjs",
+    "test": "node --test tests/",
+    "smoke": "node tools/smoke.mjs",
+    "smoke:bundle": "node tools/smoke-bundle.mjs",
+    "package": "node tools/package.mjs"
+  },
+  "devDependencies": {
+    "@openchamber/sdk": "^2.7.0",
+    "esbuild": "^0.28.2"
+  }
+}
