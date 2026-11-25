@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.2.1 — 2026-11-25
+
+- 新增 Windows 一键安装：`install/install.ps1` 复制扩展、登记路径、把浏览器提供者
+  指向本扩展，并打印后续步骤；`-Grant` 可跳过首次权限批准。
+- Release 同时提供两个资产：
+  - `openchamber-browser-bridge-<version>.zip`：只含扩展包（在 OpenChamber UI 里添加）；
+  - `openchamber-browser-bridge-<version>-setup.zip`：扩展包 + 安装脚本，
+    解压后双击 `install/offline-install.cmd` 即可，无需 git / npm / 浏览器侧扩展。
+- 安装脚本只改本扩展相关条目（`extensions.json` 的 paths、`settings.json` 的
+  browserProvider），不触碰其它扩展与其设置。
+
 ## 0.2.0 — 2026-11-25
 
 首个公开版本：由「驱动日常浏览器」的旧桥改为**拉起式**浏览器桥。

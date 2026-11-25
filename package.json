@@ -1,6 +1,6 @@
 {
   "name": "openchamber-browser-bridge",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "type": "module",
   "description": "OpenChamber-Browser-bridge：对话需要浏览器自动化时，经用户授权自动拉起本机 Chromium（CDP + 独立持久 profile），agent 通过 openchamber_web 逐步驱动；缺浏览器时给出安装引导。",
@@ -24,7 +24,9 @@
       "service": {
         "entry": "service/bundle.js",
         "runtime": "host",
-        "provides": ["browser"],
+        "provides": [
+          "browser"
+        ],
         "keepRunning": true,
         "permissions": {}
       },
@@ -60,7 +62,8 @@
     "test": "node --test tests/service.test.mjs",
     "smoke": "node tools/smoke.mjs",
     "smoke:bundle": "node tools/smoke-bundle.mjs",
-    "package": "node tools/package.mjs"
+    "package": "node tools/package.mjs && node tools/package-offline.mjs",
+    "package:offline": "node tools/package-offline.mjs"
   },
   "devDependencies": {
     "@openchamber/sdk": "^2.7.0",
